@@ -1,47 +1,30 @@
 import { useState } from "react";
-import "./Greetings.css";
+import { Button } from '@mui/material';
 
 interface ButtonProps {
-    title:string;  
+    title: string;
     message: string;
 }
 
-const Greetings :React.FC<ButtonProps> = ({ title, message }) =>{
+const Greetings: React.FC<ButtonProps> = ({ title, message }) => {
     const [alertlanzada, setAlertlanzada] = useState(false);
 
     return (
-        
-        <button 
-        style={{ 
-            backgroundColor: alertlanzada ? '#ebf21f' : '#3289a8',
-            color: alertlanzada ? '#000000' : '#fafcfc'
-        }}
-        onClick={()=>{
-            if(!alertlanzada){
+        <Button 
+            variant="contained" 
+            sx={{ 
+                backgroundColor: alertlanzada ? '#ebf21f' : '#3289a8',
+                color: alertlanzada ? '#000000' : '#fafcfc',
+                margin: 1
+            }}
+            onClick={() => {
                 alert(message);
-                setAlertlanzada(true)
-            }else{
-                alert(message)
-                setAlertlanzada(false)
-            }
-        }}>
+                setAlertlanzada(!alertlanzada);
+            }}
+        >
             {title}
-        </button>
+        </Button>
     )
 }
 
 export default Greetings;
-
-/* Yo lo haria asi
-
-const Greetings = ({ title, message }) => {
-    return (
-        <button onClick={() => alert(message)}>
-            {title}
-        </button>
-    )
-}
-
-export default Greetings;
-*/
-    

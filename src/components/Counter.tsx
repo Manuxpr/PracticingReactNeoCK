@@ -1,18 +1,22 @@
 import { useState } from "react";
-import Button from '@mui/material/Button';
-
-
-
+import { Button, Box, Typography } from '@mui/material';
 
 const Counter = () => {
     const [counter, setCounter] = useState(0);
 
     return (
-        <div>
-            <h1>Counter: {counter}</h1>
-            <Button variant="contained" onClick={() => setCounter(counter + 1)}>Increment</Button>
-            <Button variant="outlined" onClick={() => setCounter(counter - 1)}>Decrement</Button>
-        </div>
+        <Box textAlign="center">
+            <Typography variant="h5">Counter: {counter}</Typography>
+            <Box mt={2}>
+                <Button variant="contained" color="primary" onClick={() => setCounter(counter + 1)} sx={{ mr: 1 }}>
+                    Increment
+                </Button>
+                <Button variant="outlined" color="secondary" onClick={() => setCounter(counter - 1)}>
+                    Decrement
+                </Button>
+            </Box>
+        </Box>
     )
 }
+
 export default Counter;

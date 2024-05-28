@@ -1,35 +1,45 @@
 import { useState } from "react";
+import { TextField, Button, List, ListItem, Box } from '@mui/material';
+
 interface Task {
     text: string;
     state: boolean;
 }
 
-const TaskList = () => {    
+const TaskList = () => {
     const [taskList, setTaskList] = useState<Task[]>([]);
     const [task, setTask] = useState<string>("");
 
     const onAddTask = () => {
-        const newTast: Task = {text: task, state: false};
-        if(task === "") return alert("No se puede agregar una tarea vacia");
-        else
-            setTaskList([...taskList, newTast]);
-        
+        if (task === "") {
+            alert("No se puede agregar una tarea vacía");
+            return;
+        }
+        const newTask: Task = { text: task, state: false };
+        setTaskList([...taskList, newTask]);
         setTask("");
-        
     }
+
     return (
-        <>
-            <input type="text" placeholder="Add a task" value={task} onChange={(event)=>setTask(event.target.value)}/>
-            <button onClick={onAddTask}>Añadir</button>
-            <ol>
-                {taskList.map(task =>{
-                    return <li key={task.text}>{task.text}</li>;
-                })}
-            </ol>
-        </>
-
+        <Box>
+            <TextField 
+                label="Add a task" 
+                variant="outlined" 
+                value={task} 
+                onChange={(event) => setTask(event.target.value)}
+                fullWidth
+                margin="normal"
+            />
+            <Button variant="contained" color="primary" onClick={onAddTask} fullWidth>
+                Añadir
+            </Button>
+            <List>
+                {taskList.map((task, index) => (
+                    <ListItem key={index}>{task.text}</ListItem>
+                ))}
+            </List>
+        </Box>
     )
-
 }
 
 export default TaskList;
