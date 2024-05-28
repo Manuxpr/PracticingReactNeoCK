@@ -16,7 +16,15 @@ const Greetings :React.FC<ButtonProps> = ({ title, message }) =>{
             backgroundColor: alertlanzada ? '#ebf21f' : '#3289a8',
             color: alertlanzada ? '#000000' : '#fafcfc'
         }}
-        onClick={()=>{alert(message);setAlertlanzada(true)}}>
+        onClick={()=>{
+            if(!alertlanzada){
+                alert(message);
+                setAlertlanzada(true)
+            }else{
+                alert(message)
+                setAlertlanzada(false)
+            }
+        }}>
             {title}
         </button>
     )
